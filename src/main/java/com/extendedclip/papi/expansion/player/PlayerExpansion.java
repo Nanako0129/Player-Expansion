@@ -32,6 +32,7 @@ import org.bukkit.World;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Player;
 import org.bukkit.potion.PotionEffectType;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.Date;
 import java.util.HashMap;
@@ -52,6 +53,7 @@ public final class PlayerExpansion extends PlaceholderExpansion implements Confi
     private String low;
     private String medium;
     private String high;
+    private String ultralow;
 
     @Override
     public String getIdentifier() {
@@ -74,6 +76,7 @@ public final class PlayerExpansion extends PlaceholderExpansion implements Confi
         defaults.put("ping_color.high", "&c");
         defaults.put("ping_color.medium", "&e");
         defaults.put("ping_color.low", "&a");
+        defaults.put("ping_color.ultralow", "&a");
         return defaults;
     }
 
@@ -329,10 +332,10 @@ public final class PlayerExpansion extends PlaceholderExpansion implements Confi
 
     @Override
     public boolean register() {
+        ultralow = this.getString("ping_color.ultralow", "&b");
         low = this.getString("ping_color.low", "&a");
         medium = this.getString("ping_color.medium", "&e");
         high = this.getString("ping_color.high", "&c");
-
         return super.register();
     }
 
@@ -347,7 +350,7 @@ public final class PlayerExpansion extends PlaceholderExpansion implements Confi
             return String.valueOf(ping);
         }
 
-        return ChatColor.translateAlternateColorCodes('&', ping > 100 ? high : ping > 50 ? medium : low) + ping;
+        return ChatColor.translateAlternateColorCodes('&', ping > 200 ? high : ping > 150 ? medium : ping > 35 ? low : ultralow) + ping;
     }
 
 }
