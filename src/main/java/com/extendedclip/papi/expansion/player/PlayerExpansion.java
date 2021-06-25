@@ -75,7 +75,7 @@ public final class PlayerExpansion extends PlaceholderExpansion implements Confi
         defaults.put("ping_color.high", "&c");
         defaults.put("ping_color.medium", "&e");
         defaults.put("ping_color.low", "&a");
-        defaults.put("ping_color.ultralow", "&a");
+        defaults.put("ping_color.ultralow", "&b");
         return defaults;
     }
 
